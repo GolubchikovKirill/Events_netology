@@ -1,5 +1,9 @@
 # Домашнее задание к занятию "3.Обработка событий"
 
+[![Deploy to GitHub Pages](https://github.com/GolubchikovKirill/Events_netology/actions/workflows/deploy.yml/badge.svg)](https://github.com/GolubchikovKirill/Events_netology/actions/workflows/deploy.yml)
+
+🎮 [Играть на GitHub Pages](https://golubchikovkirill.github.io/Events_netology/)
+
 Правила сдачи задания:
 
 1. **Важно**: в рамках этого ДЗ нужно использовать менеджер пакетов yarn (а значит, никакого `package-lock.json` в репозитории быть не должно)
