@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - master
+      - video
 
 permissions:
   contents: write
