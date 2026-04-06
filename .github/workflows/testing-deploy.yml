@@ -1,0 +1,50 @@
+name: Testing — Credit Card Validator
+
+on:
+  push:
+    branches:
+      - main
+      - master
+      - video
+    paths:
+      - "testing/e2e/**"
+      - ".github/workflows/testing-deploy.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  test-build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: testing/e2e/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: ./testing/e2e
+
+      - name: Run tests
+        run: npm test
+        working-directory: ./testing/e2e
+
+      - name: Build
+        run: npm run build
+        working-directory: ./testing/e2e
+
+      - name: Deploy to GitHub Pages (subdir)
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./testing/e2e/dist
+          destination_dir: testing-e2e
+          keep_files: true
+
