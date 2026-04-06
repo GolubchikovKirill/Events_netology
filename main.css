@@ -1,0 +1,54 @@
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f5f5f5;
+}
+
+#game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.score-board {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(4, 100px);
+  grid-template-rows: repeat(4, 100px);
+  gap: 5px;
+  background-color: #444;
+  padding: 5px;
+  border-radius: 8px;
+  /* Use data URI for SVG cursor */
+  cursor: url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2732%27 height=%2732%27 viewBox=%270 0 24 24%27%3E%3Ctext y=%2724%27 font-size=%2724%27%3E%F0%9F%94%A8%3C/text%3E%3C/svg%3E"), auto;
+}
+
+.cell {
+  background-color: #fff;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 60px;
+  user-select: none;
+  transition: background-color 0.1s;
+}
+
+.cell:active {
+  background-color: #eee;
+}
+
+.goblin-cell {
+  /* optional highlight */
+}
+
