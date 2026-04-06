@@ -2,8 +2,6 @@
 
 [![Build Status](https://github.com/GolubchikovKirill/Events_netology/actions/workflows/testing-deploy.yml/badge.svg)](https://golubchikovkirill.github.io/Events_netology/)
 
-**GitHub Pages:** [https://golubchikovkirill.github.io/Events_netology/](https://golubchikovkirill.github.io/Events_netology/)
-
 GitHub Pages: https://golubchikovkirill.github.io/Events_netology/testing-e2e/
 
 Правила сдачи задания:
