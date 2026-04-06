@@ -9,7 +9,7 @@ describe("Credit Card Validator form", () => {
 
   beforeAll(async () => {
     browser = await puppetteer.launch({
-      // headless: false, // show gui
+      headless: true,
       // slowMo: 250,
       // devtools: true, // show devTools
     });
@@ -37,26 +37,23 @@ describe("Credit Card Validator form", () => {
     expect(labelText).toBe("Номер карты");
   });
 
-  test("should have all form labels", async () => {
+  test("should validate a valid card number", async () => {
     await page.goto(baseUrl);
 
-    // Проверяем наличие всех labels
-    const labels = await page.$$("label");
-    expect(labels.length).toBeGreaterThan(0);
+    await page.type("#card-input", "4111 1111 1111 1111");
+    await page.click('button[type="submit"]');
 
-    // Проверяем, что у label есть атрибут for
-    const labelFor = await page.$eval("label", (el) => el.getAttribute("for"));
-    expect(labelFor).toBe("card-input");
+    const resultText = await page.$eval('[data-role="result"]', (el) => el.textContent);
+    expect(resultText).toMatch(/Карта валидна/);
   });
 
-  test("should display label text correctly", async () => {
+  test("should reject an invalid card number", async () => {
     await page.goto(baseUrl);
 
-    // Проверяем видимость label
-    const isLabelVisible = await page.$eval('label[for="card-input"]', (el) => {
-      const style = window.getComputedStyle(el);
-      return style.display !== "none" && style.visibility !== "hidden";
-    });
-    expect(isLabelVisible).toBe(true);
+    await page.type("#card-input", "4111 1111 1111 1112");
+    await page.click('button[type="submit"]');
+
+    const resultText = await page.$eval('[data-role="result"]', (el) => el.textContent);
+    expect(resultText).toMatch(/не прош(ё|е)л проверку Луна/i);
   });
 });
