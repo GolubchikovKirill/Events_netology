@@ -12,11 +12,11 @@ export default class GameBoard {
     for (let i = 0; i < size * size; i++) {
       const cell = document.createElement('div');
       cell.classList.add('cell');
-      this.boardEl.appendChild(cell);
+      this.boardEl.append(cell);
       this.cells.push(cell);
     }
 
-    this.container.appendChild(this.boardEl);
+    this.container.append(this.boardEl);
   }
 
   getCells() {

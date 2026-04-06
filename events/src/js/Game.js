@@ -5,14 +5,14 @@ export default class Game {
     this.misses = 0;
     this.activeCellIndex = null;
     this.intervalId = null;
+    this.max_misses = 5;
+    this.interval_ms = 1000;
 
-    // Add score UI
     this.scoreBoardEl = document.createElement('div');
     this.scoreBoardEl.classList.add('score-board');
     this.updateScoreBoard();
     this.board.boardEl.parentNode.insertBefore(this.scoreBoardEl, this.board.boardEl);
 
-    // Bind click events
     this.onCellClick = this.onCellClick.bind(this);
     this.board.boardEl.addEventListener('click', this.onCellClick);
   }
@@ -22,7 +22,7 @@ export default class Game {
     this.moveGoblin();
     this.intervalId = setInterval(() => {
       this.moveGoblin();
-    }, 1000);
+    }, this.interval_ms);
   }
 
   moveGoblin() {
@@ -31,7 +31,7 @@ export default class Game {
       this.misses++;
       this.updateScoreBoard();
 
-      if (this.misses >= 5) {
+      if (this.misses >= this.max_misses) {
         this.gameOver();
         return;
       }
